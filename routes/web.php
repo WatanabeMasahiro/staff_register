@@ -16,16 +16,22 @@ use App\Http\Controllers\TestController;
 */
 
 Route::get('/', [TestController::class, 'indexGet']);
+Route::post('/', [TestController::class, 'indexPost']);
 
 Route::get('details', [TestController::class, 'detailsGet']);
+Route::post('/', [TestController::class, 'detailsPost']);
 
-Route::get('confirm', [TestController::class, 'confirmGet']);
+Route::get('entry', [TestController::class, 'entryGet']);
+Route::post('/', [TestController::class, 'entryPost']);
 
 Route::get('work_past', [TestController::class, 'work_pastGet']);
+Route::post('/', [TestController::class, 'work_pastPost']);
+
+Route::get('staff_info', [TestController::class, 'staff_infoGet']);
+Route::post('/', [TestController::class, 'staff_infoPost']);
 
 Route::get('contact_form', [TestController::class, 'contact_formGet']);
-
-
+Route::post('contact_form', [TestController::class, 'contact_formPost']);
 
 // Route::get('/', 'TestController@');
 // Route::post('/', 'TestController@');

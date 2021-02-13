@@ -3,6 +3,16 @@
 @include('includes.header')
 
 
+<form class="form-inline my-4 justify-content-center">
+    <div class="col-auto pr-2">
+        <input class="form-control" type="search" placeholder="Search">
+    </div>
+    <div class="col-auto pl-0">
+        <button class="btn btn-outline-success px-3" type="submit">検 索</button>
+    </div>
+</form>
+
+
 <div class="container mainContents">    <!-- mainContents -->
 
 

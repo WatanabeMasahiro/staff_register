@@ -63,6 +63,17 @@ body {
 }
 
 
+ul li :hover {
+    background-color:orange;
+    border-radius: 2px;
+}
+
+.nav-active {
+    background-color:orange;
+    border-radius: 2px;
+}
+
+
 .recordTable {
     border: solid 2px gray;
     border-collapse: separate;

@@ -24,14 +24,14 @@
                         @csrf
 
                         <div class="form-group row">
-                            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('メールアドレス') }}</label>
+                            <label for="id" class="col-md-4 col-form-label text-md-right">{{ __('スタッフID') }}</label>
 
                             <div class="col-md-6">
-                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
+                                <input id="id" type="number" class="form-control @error('id') is-invalid @enderror" name="id" value="{{ old('id') }}" required autocomplete="id" autofocus>
 
                                 @error('email')
                                     <span class="invalid-feedback" role="alert">
-                                        <strong>メールアドレスかパスワードが間違っています。</strong>
+                                        <strong>スタッフIDかパスワードが間違っています。</strong>
                                     </span>
                                 @enderror
                             </div>
@@ -45,7 +45,7 @@
 
                                 @error('password')
                                     <span class="invalid-feedback" role="alert">
-                                        <strong>メールアドレスかパスワードが間違っています。</strong>
+                                        <strong>スタッフIDかパスワードが間違っています。</strong>
                                     </span>
                                 @enderror
                             </div>
@@ -79,10 +79,6 @@
                               </div>
 
                               <div class="d-md-none col-md-12">
-                                @if (Route::has('register'))
-                                    <a class="btn btn-link col-md-12" href="{{ route('register') }}">{{ __('ユーザー登録') }}</a>
-                                @endif
-
                                 @if (Route::has('password.request'))
                                     <a class="btn btn-link col-md-12" href="{{ route('password.request') }}">
                                         {{ __('パスワードを忘れた方') }}
@@ -91,10 +87,6 @@
                               </div>
 
                               <div class="d-none d-md-block col-md-12">
-                                @if (Route::has('register'))
-                                    <a class="btn btn-link pl-1" href="{{ route('register') }}">{{ __('ユーザー登録') }}</a>
-                                @endif
-
                                 @if (Route::has('password.request'))
                                     <a class="btn btn-link pl-1" href="{{ route('password.request') }}">
                                         {{ __('パスワードを忘れた方') }}

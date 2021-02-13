@@ -2,13 +2,6 @@
 
 <div class="container-fluid footer">          <!-- footer -->
 
-    <div class="row"></div>
-        <div class="col"></div>
-        <div class="col">電話番号　：　000-0000-0000</div>
-        <div class="col">メール　　：　≪　toiawase@sample.co.jp　≫</div>
-        <div class="col"></div>
-    </div>
-
     <hr>
 
     <div class="row justify-content-center">
