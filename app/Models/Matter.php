@@ -15,5 +15,11 @@ class Matter extends Model
         return $this->belongsToMany('App\Models\Staff');
     }
 
+    protected $dates = [
+        'day',
+        'start_time',
+        'ending_time',
+    ];
+
 
 }

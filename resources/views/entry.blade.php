@@ -15,7 +15,7 @@
                 <pre>サンプル　サンプル　サンプル</pre>
             </td>
             <td class="px-3 align-middle">
-                <button class="btn btn-warning text-center" type="submit">詳　細</button>
+                <button class="btn btn-primary text-center" type="submit">詳　細</button>
             </td>
             <td class="px-3 align-middle">
                 <button class="btn btn-danger text-center" type="submit">出　勤</button>
@@ -29,7 +29,7 @@
                 <pre>サンプル　サンプル　サンプル</pre>
             </td>
             <td class="px-3 align-middle">
-                <button class="btn btn-warning text-center" type="submit">詳　細</button>
+                <button class="btn btn-primary text-center" type="submit">詳　細</button>
             </td>
             <td class="px-3 align-middle">
                 <button class="btn btn-danger text-center" type="submit">出　勤</button>
@@ -43,7 +43,7 @@
                 <pre>サンプル　サンプル　サンプル</pre>
             </td>
             <td class="px-3 align-middle">
-                <button class="btn btn-warning text-center" type="submit">詳　細</button>
+                <button class="btn btn-primary text-center" type="submit">詳　細</button>
             </td>
             <td class="px-3 align-middle">
                 <button class="btn btn-danger text-center" type="submit">出　勤</button>

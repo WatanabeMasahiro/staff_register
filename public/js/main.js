@@ -3,6 +3,7 @@ $(function() {
   // f_test();
   f_navBar();
   f_staff_infoURL_th();
+  f_backBtn();
 
 
   // function f_test() {
@@ -28,6 +29,12 @@ $(function() {
     if (location.pathname == "/staff_info") {
       $('th').css('background-color', '#999999');
     }
+  }
+
+  function f_backBtn() {
+    $('.backBtn').click(function() {
+      history.back();
+    })
   }
 
 

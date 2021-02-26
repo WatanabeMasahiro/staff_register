@@ -58,7 +58,7 @@
                 </ul>
                 <ul class="navbar-nav">
                     <li class="nav-item" style="margin:0 auto;">
-                        <a class="nav-link p-3 font-weight-bold" href="#">給与明細</a>
+                        <a class="nav-link p-3 font-weight-bold" href="/payslips">給与明細</a>
                     </li>
                 </ul>
                 <ul class="navbar-nav">

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use App\Models\Staff;
+use App\Models\Matter;
 use App\Models\Contact;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -15,8 +16,46 @@ class TestController extends Controller
     public function indexGet(Request $request)
     {
         $user = Auth::user();
-        return view('home', compact('user',));
+        $week = array( "日", "月", "火", "水", "木", "金", "土" );
+        $day1_search = $request->day1_search;
+        $day2_search = $request->day2_search;
+        $wage1_search = $request->wage1_search;
+        $wage2_search = $request->wage2_search;
+        $str_search = mb_convert_kana(strtolower($request->str_search), 'a');
+
+        // 「detailsページの案件ID飛ばし」
+        $matters = Matter::where('completed', 0);
+        if (!empty($day1_search)) {
+            $matters->whereDate('day', '>=', $day1_search);
+        }
+        if (!empty($day2_search)) {
+            $matters->whereDate('day', '<=', $day2_search);
+        }
+        if (!empty($wage1_search)) {
+            $matters->where('wage', '>=', $wage1_search);
+        }
+        if (!empty($wage2_search)) {
+            $matters->where('wage', '<=', $wage2_search);
+        }
+        if (!empty($str_search)) {
+            $matters->where(function($matters) use($str_search){
+                $matters->where('client', 'like', "%{$str_search}%")
+                    ->orwhere('matter_name', 'like', "%{$str_search}%")
+                    ->orwhere('work_name', 'like', "%{$str_search}%")
+                    ->orwhere('place', 'like', "%{$str_search}%")
+                    ->orwhere('place_near_sta', 'like', "%{$str_search}%")
+                    ->orwhere('start_time', 'like', "%{$str_search}%")
+                    ->orwhere('ending_time', 'like', "%{$str_search}%")
+                    ->orwhere('work_time', 'like', "%{$str_search}%")
+                    ->orwhere('production_time', 'like', "%{$str_search}%")
+                    ->orwhere('over_time', 'like', "%{$str_search}%");
+            });
+        }
+        $matters = $matters->orderBy('day', 'asc')->paginate(10);
+
+        return view('home', compact('user', 'week', 'day1_search', 'day2_search', 'wage1_search','wage2_search', 'str_search', 'matters'));
     }
+
 
     public function indexPost(Request $request)
     {
@@ -27,7 +66,8 @@ class TestController extends Controller
     public function detailsGet(Request $request)
     {
         $user = Auth::user();
-        return view('details', compact('user',));
+        $mattersId = $request->mattersId;
+        return view('details', compact('user', 'mattersId',));
     }
 
     public function detailsPost(Request $request)
@@ -70,6 +110,32 @@ class TestController extends Controller
     public function staff_infoPost(Request $request)
     {
         return redirect('/');
+    }
+
+
+    public function payslipsGet(Request $request)
+    {
+        $user = Auth::user();
+        return view('payslips', compact('user',));
+    }
+
+    public function payslipsPost(Request $request)
+    {
+        $user = Auth::user();
+        return view('payslips', compact('user',));
+    }
+
+
+    public function payslips_durationGet(Request $request)
+    {
+        $user = Auth::user();
+        return view('payslips_duration', compact('user',));
+    }
+
+    public function payslips_durationPost(Request $request)
+    {
+        $user = Auth::user();
+        return view('payslips_duration', compact('user',));
     }
 
 

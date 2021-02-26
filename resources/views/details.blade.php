@@ -5,6 +5,9 @@
 
 <div class="container mainContents">    <!-- mainContents -->
 
+    @if(isset($matersId))
+    <p>{{$matersId}}</p>
+    @endif
 
     <table class="noset-table table table-hover table-dark recordTable">
         <tr class="recordData table-secondary text-dark">

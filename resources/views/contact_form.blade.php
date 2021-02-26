@@ -37,6 +37,9 @@
     <hr class="my-5">
 
 
+    <p class="text-center">↓　（株）ハケン会社名への連絡先はこちら　↓</p>
+
+
     <div class="d-block d-lg-none">
         <table class="table table-bordered table-info table-sm w-75" style="margin:0 auto;">    <!-- モバイル -->
             <thead class="bg-success">
@@ -46,7 +49,7 @@
             </thead>
             <tbody>
                 <tr class="">
-                    <td class="text-center">電話番号 ：　<a href="tel:00000000000">000-0000-0000</a></td>
+                    <td class="text-center" style="border-bottom-width: 2px;">電話番号 ：　<a href="tel:00000000000">000-0000-0000</a></td>
                 </tr>
                 <tr class="">
                     <td class="text-center">メールアドレス ：　<br/>≪　toiawase@sample.co.jp　≫</td>
@@ -59,15 +62,17 @@
         <table class="table table-bordered table-info table-sm w-50" style="margin:0 auto;">    <!-- PC -->
             <thead class="bg-success">
                 <tr class="">
-                    <th class="text-center">連　絡　先</th>
+                    <th class="text-center" colspan="2">連　絡　先</th>
                 </tr>
             </thead>
             <tbody>
                 <tr class="">
-                    <td class="text-center">電話番号 ：　<a href="tel:00000000000">000-0000-0000</a></td>
+                    <td class="text-center" style="border-bottom-width: 2px;">電話番号</td>
+                    <td class="text-center" style="border-bottom-width: 2px;"><a href="tel:00000000000">000-0000-0000</a></td>
                 </tr>
                 <tr class="">
-                    <td class="text-center">メールアドレス ：　≪　toiawase@sample.co.jp　≫</td>
+                    <td class="text-center" style="border-right: none;">メールアドレス</td>
+                    <td class="text-center">≪　toiawase@sample.co.jp　≫</td>
                 </tr>
             </tbody>
         </table>

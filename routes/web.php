@@ -30,6 +30,12 @@ Route::post('/', [TestController::class, 'work_pastPost']);
 Route::get('staff_info', [TestController::class, 'staff_infoGet']);
 Route::post('/', [TestController::class, 'staff_infoPost']);
 
+Route::get('payslips', [TestController::class, 'payslipsGet']);
+Route::post('/', [TestController::class, 'payslipsPost']);
+
+Route::get('payslips_duration', [TestController::class, 'payslips_durationGet']);
+Route::post('/', [TestController::class, 'payslips_durationPost']);
+
 Route::get('contact_form', [TestController::class, 'contact_formGet']);
 Route::post('contact_form', [TestController::class, 'contact_formPost']);
 
