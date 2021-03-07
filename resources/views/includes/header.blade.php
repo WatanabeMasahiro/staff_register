@@ -70,7 +70,7 @@
         </nav>
 
 
-        <a class="d-block text-center my-3 font-weight-bold text-decoration-none" href="/entry">＜ ＜　出勤報告　＞ ＞</a>
+        <a class="d-block text-center my-3 bg-white font-weight-bold text-decoration-none flashingWarning border" href="/entry" style="margin: 0 auto; width: 12em; color:navy;">＜ ＜　出勤報告　＞ ＞</a>
 
 
         <hr class="pt-0 mt-0">

@@ -5,7 +5,10 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use App\Models\Staff;
 use App\Models\Matter;
+use App\Models\Matter_staff;
+use App\Models\Payslip;
 use App\Models\Contact;
+use App\Models\Contact_title;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
@@ -59,20 +62,44 @@ class TestController extends Controller
 
     public function indexPost(Request $request)
     {
-        return redirect('/');
+        if ($request->has('mattersId')){
+            $user = Auth::user();
+            $week = array( "日", "月", "火", "水", "木", "金", "土" );
+            $mattersId = $request->mattersId;
+            $matter = Matter::where('id', $mattersId)->first();
+            $m_ids = Staff::where('id', $user->id)->first()->matters;
+            $counter = 0;
+            return view('details', compact('user', 'week', 'matter', 'mattersId', 'm_ids', 'counter'));
+        } elseif ($request->has('application')) {
+            $user = Auth::user();
+            $week = array( "日", "月", "火", "水", "木", "金", "土" );
+            $mattersId = $request->application;
+            $matter = Matter::where('id', $mattersId)->first();
+            Staff::where('id', $user->id)->first()->matters()->syncWithoutDetaching($mattersId);
+            $m_ids = Staff::where('id', $user->id)->first()->matters;
+            $counter = 0;
+            $appAnn = true;
+            return view('details', compact('user', 'week', 'matter', 'mattersId', 'm_ids', 'counter', 'appAnn'));
+        }
     }
 
 
     public function detailsGet(Request $request)
     {
         $user = Auth::user();
-        $mattersId = $request->mattersId;
-        return view('details', compact('user', 'mattersId',));
+        return view('details', compact('user'));
     }
 
     public function detailsPost(Request $request)
     {
-        return redirect('/');
+        $user = Auth::user();
+        $week = array( "日", "月", "火", "水", "木", "金", "土" );
+        $applicationId = $request->application;
+        $matter = Matter::where('id', $applicationId)->first();
+        $matter_staff = new Matter_staff;
+        $matter_staff->application = $request->application;
+        $matter_staff->save();
+        return view('/details', compact('user', 'week', 'matter', 'applicationId',));
     }
 
 

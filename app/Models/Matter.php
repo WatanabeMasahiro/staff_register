@@ -12,7 +12,7 @@ class Matter extends Model
 
     public function staff()
     {
-        return $this->belongsToMany('App\Models\Staff');
+        return $this->belongsToMany('App\Models\Staff')->withTimestamps();
     }
 
     protected $dates = [
@@ -21,5 +21,6 @@ class Matter extends Model
         'ending_time',
     ];
 
+    protected $table = 'matters';
 
 }

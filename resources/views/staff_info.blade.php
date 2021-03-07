@@ -47,7 +47,7 @@
 
     <table class="noset-table table table-dark recordTable">
         <tr class="recordData table-secondary text-dark">
-            <th class="px-3 align-middle text-center">身分証明書の画像</th>
+            <th class="px-3 align-middle text-center" id="th_width_not">身分証明書の画像</th>
         </tr>
         <tr class="recordData table-secondary text-dark">
             <td class="px-3 align-middle text-center">

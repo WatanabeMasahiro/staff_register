@@ -42,7 +42,7 @@ class Staff extends Authenticatable
 
     public function matters()
     {
-        return $this->belongsToMany('App\Models\Matter');
+        return $this->belongsToMany('App\Models\Matter')->withTimestamps();
     }
 
     public function payslips()
