@@ -3,7 +3,7 @@
 
 
         <div id="siteTitle" class="siteTitle text-center">
-            <h1 class="siteTitle mt-4 pb-1">
+            <h1 class="siteTitle mt-5 pb-1">
                 <a href="/" style="text-decoration: none;">
                     <b class="text-danger"><i class="fas fa-cannabis mr-3"></i>ハケン会社名<i class="fas fa-cannabis ml-3"></i></b>
                 </a>
@@ -70,7 +70,21 @@
         </nav>
 
 
-        <a class="d-block text-center my-3 bg-white font-weight-bold text-decoration-none flashingWarning border" href="/entry" style="margin: 0 auto; width: 12em; color:navy;">＜ ＜　出勤報告　＞ ＞</a>
+        @foreach($m_ids as $m_id)
+            @php
+            $timeset = new DateTime();
+            $timeset = $timeset->setDate($m_id->day->format('Y'),$m_id->day->format('m'),$m_id->day->format('d'))->setTime($m_id->start_time->format('H'),$m_id->start_time->format('i'),$m_id->start_time->format('s'))->format('Y-m-d H:i:s');
+            $timeset_b_three = new DateTime($timeset);
+            $timeset_b_three = $timeset_b_three->modify('-3 hours')->format('Y-m-d H:i:s');
+            $timeset_ending = new DateTime();
+            $timeset_ending = $timeset_ending->setDate($m_id->day->format('Y'),$m_id->day->format('m'),$m_id->day->format('d'))->setTime($m_id->ending_time->format('H'),$m_id->ending_time->format('i'),$m_id->ending_time->format('s'))->format('Y-m-d H:i:s');
+            @endphp
+
+            @if($m_id->pivot->punchin == null  &&  $now >= $timeset_b_three  &&  $now < $timeset_ending)
+            <a class="d-block text-center my-3 font-weight-bold text-decoration-none flashingWarning border rounded mark" href="/entry" style="margin: 0 auto; width: 12em; color:navy;">＜ ＜　出勤報告　＞ ＞</a>
+            @break
+            @endif
+        @endforeach
 
 
         <hr class="pt-0 mt-0">

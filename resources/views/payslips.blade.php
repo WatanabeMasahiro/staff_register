@@ -14,7 +14,8 @@
         </tr>
         <tr class="recordData table-secondary text-dark">
             <td class="px-3 align-middle">
-                <pre>サンプル　サンプル　サンプル<br/>サンプル　サンプル　サンプル<br/>サンプル　サンプル　サンプル<br/></pre>
+                <pre>サンプル　サンプル　サンプル<br/>サンプル　サンプル　サンプル<br/>サンプル　サンプル　サンプル<br/>
+                <button class="matter_btn btn btn-success text-center my-2">明　細</button></pre>
             </td>
         </tr>
         <tr class="recordData table-secondary text-dark">

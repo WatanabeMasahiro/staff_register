@@ -42,23 +42,32 @@ class Staff extends Authenticatable
 
     public function matters()
     {
-        return $this->belongsToMany('App\Models\Matter')->withTimestamps();
+        return $this->belongsToMany('App\Models\Matter')
+                    ->withPivot('punchin', 'punchout')
+                    ->withTimestamps();
     }
 
-    public function payslips()
-    {
-        return $this->hasmany('App\Models\Paylip');
-    }
+    // public function matter_staff()
+    // {
+    //     return $this->belongsToMany('App\Models\Matter')
+    //                 ->using('App\Models\Matter_staff')
+    //                 ->withPivot();
+    // }
 
-    public function contacts()
-    {
-        return $this->hasmany('App\Models\Contact');
-    }
+    // public function payslips()
+    // {
+    //     return $this->hasmany('App\Models\Paylip');
+    // }
 
-    public function panchins()
-    {
-        return $this->hasmany('App\Models\Matter_staff');
-    }
+    // public function contacts()
+    // {
+    //     return $this->hasmany('App\Models\Contact');
+    // }
+
+    // public function panchins()
+    // {
+    //     return $this->hasmany('App\Models\Matter_staff');
+    // }
 
 
     /**

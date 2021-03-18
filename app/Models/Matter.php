@@ -10,10 +10,17 @@ class Matter extends Model
     use HasFactory;
 
 
-    public function staff()
-    {
-        return $this->belongsToMany('App\Models\Staff')->withTimestamps();
-    }
+    // public function matters()
+    // {
+    //     return $this->belongsToMany('App\Models\Matter')
+    //                 ->withPivot('punchin', 'punchout')
+    //                 ->withTimestamps();
+    // }
+
+    // public function staff()
+    // {
+    //     return $this->belongsToMany('App\Models\Staff')->withTimestamps();
+    // }
 
     protected $dates = [
         'day',

@@ -2,9 +2,9 @@
 
 @include('includes.header')
 
-<div class="d-block d-xl-none my-5">
+<div class="d-block d-xl-none my-5">        <!-- mobile NavBar -->
     <table style="margin: 0 auto;">
-        <form class="my-5" action="{{url('/')}}" method="GET">
+        <form id="formHome_1" class="my-5" action="{{url('/')}}" method="GET">
             <tr class="form_daySearch border border-secondary">
                 <td class="pl-1">
                     <input class="form-control d-inline border-primary text-center mt-1 mr-1" type="date" name="day1_search" value="{{$day1_search}}" style="width: 200px;">から<br/>
@@ -35,10 +35,10 @@
             </tr>
         </form>
     </table>
-</div>
+</div>                                      <!-- /mobile NavBar -->
 
-<div class="d-none d-xl-block">
-    <form class="form-inline my-5 justify-content-center" action="{{url('/')}}" method="GET">
+<div class="d-none d-xl-block">     <!-- PC NavBar -->
+    <form id="formHome_2" class="form-inline my-5 justify-content-center" action="{{url('/')}}" method="GET">
         <table class="">
             <tr class="form_daySearch">
                 <div class="col-auto pr-2">
@@ -70,7 +70,7 @@
             </tr>
         </table>
     </form>
-</div>
+</div>                              <!-- /PC NavBar -->
 
 
 <div class="container mainContents">    <!-- mainContents -->
@@ -81,6 +81,9 @@
     </form>
 
     <table class="noset-table table table-hover table-dark recordTable">
+        <tr class="recordData table-secondary text-dark">
+            <th class="ml-2 py-0 align-middle" style="font-size: 0.9em;">日時昇順（<i class="far fa-clock"></i>）</th>
+        </tr>
         @foreach ($matters as $matter)
         <tr class="recordData table-secondary text-dark">
             <td class="matter_td px-3 pb-0 align-middle" style="font-size: 15px;">

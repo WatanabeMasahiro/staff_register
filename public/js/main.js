@@ -2,7 +2,8 @@ $(function() {
 
   // f_test();
   f_navBar();
-  f_matterId_send_toDetails();
+  f_matterId_send_toDetails1();
+  f_matterId_send_toDetails2();
   f_gray_th();
   f_backBtn();
   f_overtimeAnn();
@@ -28,7 +29,7 @@ $(function() {
   }
 
 
-  function f_matterId_send_toDetails() {
+  function f_matterId_send_toDetails1() {
     $('.matter_td').on('click', function() {
       var m_id = $(this).children('.matter_id').text();
       $('#input_m_id').val(m_id);
@@ -37,10 +38,22 @@ $(function() {
   }
 
 
+  function f_matterId_send_toDetails2() {
+    $('.matter_btn').on('click', function() {
+      var m_id = $(this).siblings('.matter_id').text();
+      $('#input_m_id').val(m_id);
+      $('#form_m_id').submit();
+    });
+  }
+
+
   function f_gray_th() {
-    if (location.pathname == "/details" || location.pathname == "/staff_info") {
+    if (location.pathname == "/" || location.pathname == "/details" || location.pathname == "/entry" || location.pathname == "/work_past" || location.pathname == "/staff_info") {
       $('th').css('background-color', '#999999');
       $('th').not('#th_width_not').css('width', '160px');
+      if(!($('.recordData').children('td').length)){
+        $('.recordData').children('th').addClass('text-center py-2').css('font-size', '1.5em').css('letter-spacing', '0.05em').text('データがありません。');
+      }
     }
   }
 
@@ -64,6 +77,11 @@ $(function() {
         $('.overtimeAnn').removeClass('d-none');
       }
     }
+    $('.overtimeAnn_chain').click(function() {
+      if(!confirm('申し込みを確定しますか？')){
+          return false;
+      }
+    });
   }
 
 

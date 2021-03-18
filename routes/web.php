@@ -15,28 +15,28 @@ use App\Http\Controllers\TestController;
 |
 */
 
-Route::get('/', [TestController::class, 'indexGet']);
-Route::post('/details', [TestController::class, 'indexPost']);
+Route::get('/', [TestController::class, 'indexGet'])->middleware('auth');
+Route::post('/details', [TestController::class, 'details'])->middleware('auth');
 
-Route::get('details', [TestController::class, 'detailsGet']);
+// Route::get('details', [TestController::class, 'detailsGet']);
 // Route::post('/', [TestController::class, 'detailsPost']);
 
-Route::get('entry', [TestController::class, 'entryGet']);
-Route::post('/', [TestController::class, 'entryPost']);
+Route::get('entry', [TestController::class, 'entryGet'])->middleware('auth');
+Route::post('/entry', [TestController::class, 'entryPost']);
 
-Route::get('work_past', [TestController::class, 'work_pastGet']);
+Route::get('work_past', [TestController::class, 'work_pastGet'])->middleware('auth');
 Route::post('/', [TestController::class, 'work_pastPost']);
 
-Route::get('staff_info', [TestController::class, 'staff_infoGet']);
+Route::get('payslips', [TestController::class, 'payslipsGet'])->middleware('auth');
+Route::post('/', [TestController::class, 'payslipsPost'])->middleware('auth');
+
+Route::get('payslips_duration', [TestController::class, 'payslips_durationGet'])->middleware('auth');
+Route::post('/', [TestController::class, 'payslips_durationPost'])->middleware('auth');
+
+Route::get('staff_info', [TestController::class, 'staff_infoGet'])->middleware('auth');
 Route::post('/', [TestController::class, 'staff_infoPost']);
 
-Route::get('payslips', [TestController::class, 'payslipsGet']);
-Route::post('/', [TestController::class, 'payslipsPost']);
-
-Route::get('payslips_duration', [TestController::class, 'payslips_durationGet']);
-Route::post('/', [TestController::class, 'payslips_durationPost']);
-
-Route::get('contact_form', [TestController::class, 'contact_formGet']);
+Route::get('contact_form', [TestController::class, 'contact_formGet'])->middleware('auth');
 Route::post('contact_form', [TestController::class, 'contact_formPost']);
 
 // Route::get('/', 'TestController@');
