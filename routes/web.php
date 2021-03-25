@@ -16,10 +16,7 @@ use App\Http\Controllers\TestController;
 */
 
 Route::get('/', [TestController::class, 'indexGet'])->middleware('auth');
-Route::post('/details', [TestController::class, 'details'])->middleware('auth');
-
-// Route::get('details', [TestController::class, 'detailsGet']);
-// Route::post('/', [TestController::class, 'detailsPost']);
+Route::post('/details', [TestController::class, 'detailsPost'])->middleware('auth');
 
 Route::get('entry', [TestController::class, 'entryGet'])->middleware('auth');
 Route::post('/entry', [TestController::class, 'entryPost']);
@@ -28,10 +25,10 @@ Route::get('work_past', [TestController::class, 'work_pastGet'])->middleware('au
 Route::post('/', [TestController::class, 'work_pastPost']);
 
 Route::get('payslips', [TestController::class, 'payslipsGet'])->middleware('auth');
-Route::post('/', [TestController::class, 'payslipsPost'])->middleware('auth');
+// Route::post('/', [TestController::class, 'payslipsPost'])->middleware('auth');
 
-Route::get('payslips_duration', [TestController::class, 'payslips_durationGet'])->middleware('auth');
-Route::post('/', [TestController::class, 'payslips_durationPost'])->middleware('auth');
+// Route::get('payslips_duration', [TestController::class, 'payslips_durationGet'])->middleware('auth');
+Route::post('/payslips_duration', [TestController::class, 'payslips_durationPost'])->middleware('auth');
 
 Route::get('staff_info', [TestController::class, 'staff_infoGet'])->middleware('auth');
 Route::post('/', [TestController::class, 'staff_infoPost']);

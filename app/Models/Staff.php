@@ -54,10 +54,10 @@ class Staff extends Authenticatable
     //                 ->withPivot();
     // }
 
-    // public function payslips()
-    // {
-    //     return $this->hasmany('App\Models\Paylip');
-    // }
+    public function payslips()
+    {
+        return $this->hasmany('App\Models\Payslip');
+    }
 
     // public function contacts()
     // {

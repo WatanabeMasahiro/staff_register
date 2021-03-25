@@ -65,11 +65,11 @@ class TestController extends Controller
         }
         $matters = $matters->orderBy('day', 'asc')->orderBy('start_time', 'asc')->paginate(10);
 
-        return view('home', compact('user', 'week', 'day1_search', 'day2_search', 'wage1_search','wage2_search', 'str_search', 'nowdate', 'now', 'm_ids', 'matters'));
+        return view('home', compact('user', 'week', 'day1_search', 'day2_search', 'wage1_search', 'wage2_search', 'str_search', 'nowdate', 'now', 'm_ids', 'matters'));
     }
 
 
-    public function details(Request $request)
+    public function detailsPost(Request $request)
     {
         if ($request->has('mattersId')){
             $user = Auth::user();
@@ -79,6 +79,22 @@ class TestController extends Controller
             $nowdate = date("Y-m-d");
             $now = now();
             $m_ids = Staff::where('id', $user->id)->first()->matters->where('day', '>=', $nowdate)->sort(function ($first, $second){
+                if ($first['day'] == $second['day']) {
+                return $first['start_time'] < $second['start_time'] ? -1 : 1 ;
+                }
+                return $first['day'] < $second['day'] ? -1 : 1 ;
+                });
+            $counter = 0;
+            $nowdate = date("Y-m-d");
+            return view('details', compact('user', 'week', 'matter', 'mattersId', 'nowdate', 'now', 'm_ids', 'counter', 'nowdate'));
+        } elseif($request->has('mtrId_pastIn')) {
+            $user = Auth::user();
+            $week = array( "日", "月", "火", "水", "木", "金", "土" );
+            $mattersId = $request->mtrId_pastIn;
+            $matter = Matter::where('id', $mattersId)->first();
+            $nowdate = date("Y-m-d");
+            $now = now();
+            $m_ids = Staff::where('id', $user->id)->first()->matters->where('day', '<', $nowdate)->sort(function ($first, $second){
                 if ($first['day'] == $second['day']) {
                 return $first['start_time'] < $second['start_time'] ? -1 : 1 ;
                 }
@@ -107,25 +123,6 @@ class TestController extends Controller
             return view('details', compact('user', 'week', 'matter', 'mattersId', 'nowdate', 'now', 'm_ids', 'counter', 'appAnn', 'nowdate'));
         }
     }
-
-
-    // public function detailsGet(Request $request)
-    // {
-    //     $user = Auth::user();
-    //     return view('details', compact('user'));
-    // }
-
-    // public function detailsPost(Request $request)
-    // {
-    //     $user = Auth::user();
-    //     $week = array( "日", "月", "火", "水", "木", "金", "土" );
-    //     $applicationId = $request->application;
-    //     $matter = Matter::where('id', $applicationId)->first();
-    //     $matter_staff = new Matter_staff;
-    //     $matter_staff->application = $request->application;
-    //     $matter_staff->save();
-    //     return view('/details', compact('user', 'week', 'matter', 'applicationId',));
-    // }
 
 
     public function entryGet(Request $request)
@@ -192,7 +189,7 @@ class TestController extends Controller
             null,
             ['path' => $request->url()]
         );
-        return view('work_past', compact('user', 'week', 'nowdate', 'now', 'm_ids', 'm_ids_past', ));
+        return view('work_past', compact('user', 'week', 'nowdate', 'now', 'm_ids', 'm_ids_past',));
     }
 
     public function work_pastPost(Request $request)
@@ -212,50 +209,48 @@ class TestController extends Controller
             }
             return $first['day'] < $second['day'] ? -1 : 1 ;
             });
-        return view('payslips', compact('user', 'nowdate', 'now', 'm_ids'));
+        $payslips = Staff::where('id', $user->id)->first()->payslips->where('release_tf', 1)->sortByDesc('end_period');
+        $payslips = new LengthAwarePaginator(
+            $payslips->forPage($request->page, 10),
+            $payslips->count(),
+            10,
+            null,
+            ['path' => $request->url()]
+        );
+        return view('payslips', compact('user', 'nowdate', 'now', 'm_ids', 'payslips',));
     }
 
-    public function payslipsPost(Request $request)
-    {
-        $user = Auth::user();
-        $nowdate = date("Y-m-d");
-        $now = now();
-        $m_ids = Staff::where('id', $user->id)->first()->matters->where('day', '>=', $nowdate)->sort(function ($first, $second){
-            if ($first['day'] == $second['day']) {
-            return $first['start_time'] < $second['start_time'] ? -1 : 1 ;
-            }
-            return $first['day'] < $second['day'] ? -1 : 1 ;
-            });
-        return view('payslips', compact('user', 'nowdate', 'now', 'm_ids',));
-    }
-
-
-    public function payslips_durationGet(Request $request)
-    {
-        $user = Auth::user();
-        $nowdate = date("Y-m-d");
-        $now = now();
-        $m_ids = Staff::where('id', $user->id)->first()->matters->where('day', '>=', $nowdate)->sort(function ($first, $second){
-            if ($first['day'] == $second['day']) {
-            return $first['start_time'] < $second['start_time'] ? -1 : 1 ;
-            }
-            return $first['day'] < $second['day'] ? -1 : 1 ;
-            });
-        return view('payslips_duration', compact('user', 'nowdate', 'now', 'm_ids',));
-    }
 
     public function payslips_durationPost(Request $request)
     {
-        $user = Auth::user();
-        $nowdate = date("Y-m-d");
-        $now = now();
-        $m_ids = Staff::where('id', $user->id)->first()->matters->where('day', '>=', $nowdate)->sort(function ($first, $second){
-            if ($first['day'] == $second['day']) {
-            return $first['start_time'] < $second['start_time'] ? -1 : 1 ;
-            }
-            return $first['day'] < $second['day'] ? -1 : 1 ;
-            });
-        return view('payslips_duration', compact('user', 'nowdate', 'now', 'm_ids',));
+        if ($request->has('payslipsId')){
+            $payslipsId = $request->payslipsId;
+            $user = Auth::user();
+            $week = array( "日", "月", "火", "水", "木", "金", "土" );
+            $nowdate = date("Y-m-d");
+            $now = now();
+            $m_ids = Staff::where('id', $user->id)->first()->matters->where('day', '>=', $nowdate)->sort(function ($first, $second){
+                if ($first['day'] == $second['day']) {
+                return $first['start_time'] < $second['start_time'] ? -1 : 1 ;
+                }
+                return $first['day'] < $second['day'] ? -1 : 1 ;
+                });
+            $payslips = Staff::where('id', $user->id)->first()->payslips->where('id', $payslipsId);
+            $m_ids_past = Staff::where('id', $user->id)->first()->matters->where('day', '<', $nowdate)->sort(function ($first, $second){
+                if ($first['day'] == $second['day']) {
+                return $first['start_time'] < $second['start_time'] ? 1 : -1 ;
+                }
+                return $first['day'] < $second['day'] ? 1 : -1 ;
+                });
+            $m_ids_past = new LengthAwarePaginator(
+                $m_ids_past->forPage($request->page, 10),
+                $m_ids_past->count(),
+                10,
+                null,
+                ['path' => $request->url()]
+            );
+            return view('payslips_duration', compact('user', 'week', 'nowdate', 'now', 'm_ids', 'payslips', 'm_ids_past',));
+        }
     }
 
 

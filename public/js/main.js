@@ -4,6 +4,8 @@ $(function() {
   f_navBar();
   f_matterId_send_toDetails1();
   f_matterId_send_toDetails2();
+  f_matterId_send_toDetails3();
+  f_payslipId_send_toPayslipsDrt();
   f_gray_th();
   f_backBtn();
   f_overtimeAnn();
@@ -30,7 +32,7 @@ $(function() {
 
 
   function f_matterId_send_toDetails1() {
-    $('.matter_td').on('click', function() {
+    $('.matter_tr').on('click', function() {
       var m_id = $(this).children('.matter_id').text();
       $('#input_m_id').val(m_id);
       $('#form_m_id').submit();
@@ -39,6 +41,15 @@ $(function() {
 
 
   function f_matterId_send_toDetails2() {
+    $('.matter_td').on('click', function() {
+      var m_id = $(this).children('.matter_id').text();
+      $('#input_m_id').val(m_id);
+      $('#form_m_id').submit();
+    });
+  }
+
+
+  function f_matterId_send_toDetails3() {
     $('.matter_btn').on('click', function() {
       var m_id = $(this).siblings('.matter_id').text();
       $('#input_m_id').val(m_id);
@@ -47,8 +58,17 @@ $(function() {
   }
 
 
+  function f_payslipId_send_toPayslipsDrt() {
+    $('.payslip_btn').on('click', function() {
+      var p_id = $(this).siblings('.payslip_id').text();
+      $('#input_p_id').val(p_id);
+      $('#form_p_id').submit();
+    });
+  }
+
+
   function f_gray_th() {
-    if (location.pathname == "/" || location.pathname == "/details" || location.pathname == "/entry" || location.pathname == "/work_past" || location.pathname == "/staff_info") {
+    if (location.pathname == "/" || location.pathname == "/details" || location.pathname == "/entry" || location.pathname == "/work_past" || location.pathname == "/payslips" || location.pathname == "/payslips_duration" || location.pathname == "/staff_info") {
       $('th').css('background-color', '#999999');
       $('th').not('#th_width_not').css('width', '160px');
       if(!($('.recordData').children('td').length)){

@@ -2,7 +2,8 @@
 
 @include('includes.header')
 
-<div class="d-block d-xl-none my-5">        <!-- mobile NavBar -->
+
+<div class="d-block d-xl-none my-5">        <!-- mobile searchBar -->
     <table style="margin: 0 auto;">
         <form id="formHome_1" class="my-5" action="{{url('/')}}" method="GET">
             <tr class="form_daySearch border border-secondary">
@@ -35,9 +36,9 @@
             </tr>
         </form>
     </table>
-</div>                                      <!-- /mobile NavBar -->
+</div>                                      <!-- /mobile searchBar -->
 
-<div class="d-none d-xl-block">     <!-- PC NavBar -->
+<div class="d-none d-xl-block">     <!-- PC searchBar -->
     <form id="formHome_2" class="form-inline my-5 justify-content-center" action="{{url('/')}}" method="GET">
         <table class="">
             <tr class="form_daySearch">
@@ -70,7 +71,7 @@
             </tr>
         </table>
     </form>
-</div>                              <!-- /PC NavBar -->
+</div>                              <!-- /PC searchBar -->
 
 
 <div class="container mainContents">    <!-- mainContents -->
@@ -89,7 +90,7 @@
             <td class="matter_td px-3 pb-0 align-middle" style="font-size: 15px;">
                 <div class="matter_id d-none">{{$matter->id}}</div>
                 <div class="mark rounded-pill"><u>☆ No. {{$matter->id}}</u></div>
-                <pre>【日時】　{{$matter->day->format('Y/m/d')}}({{$week[$matter->day->format('w')]}})　{{$matter->start_time->format('H：i')}}〜{{$matter->ending_time->format('H：i')}}　（拘束:{{$matter->work_time}}h　実動:{{$matter->production_time}}h）<br/>【案件名】　{{$matter->matter_name}}　〔{{$matter->client}}〕<br/>【作業】　{{$matter->work_name}}<br/>【作業場所】　{{$matter->place}}（{{$matter->place_near_sta}}）<br/>【見込金額】　{{$matter->wage}}円<br/>（@if($matter->over_time == 0)残業：なし @elseif($matter->over_time != 0)残業：{{$matter->over_time}}H @endif）</pre>
+                <pre>【日時】　{{$matter->day->format('Y/m/d')}}({{$week[$matter->day->format('w')]}})　{{$matter->start_time->format('H：i')}}〜{{$matter->ending_time->format('H：i')}}　（拘束:{{$matter->work_time}}h　実動:{{$matter->production_time}}h）<br/>【案件名】　{{$matter->matter_name}}　〔{{$matter->client}}〕<br/>【作業】　{{$matter->work_name}}<br/>【作業場所】　{{$matter->place}}（{{$matter->place_near_sta}}）<br/>【見込金額】　{{number_format($matter->wage)}}円<br/>（@if($matter->over_time == 0)残業：なし @elseif($matter->over_time != 0)残業：{{$matter->over_time}}H @endif）</pre>
             </td>
         </tr>
         @endforeach

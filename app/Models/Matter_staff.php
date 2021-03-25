@@ -10,7 +10,7 @@ class Matter_staff extends Model
     use HasFactory;
 
     protected $fillable = [
-        'staff_id', 'matter_id', 'application', 'punchin', 'punchout',
+        'staff_id', 'matter_id', 'punchin', 'punchout',
     ];
 
     protected $table = 'matter_staff';

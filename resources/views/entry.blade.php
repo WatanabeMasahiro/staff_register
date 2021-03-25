@@ -57,7 +57,7 @@
             <td class="px-3 pb-0 align-middle" style="font-size: 15px;">
                 <div class="matter_id d-none">{{$matter->id}}</div>
                 <div class="mark rounded-pill"><u>☆ No. {{$matter->id}}</u></div>
-                <pre class="mb-0">【案件名】　{{$matter->matter_name}}　〔{{$matter->client}}〕<br/>【作業】　{{$matter->work_name}}<br/>【作業場所】　{{$matter->place}}（{{$matter->place_near_sta}}）<br/>【見込金額】　{{$matter->wage}}円</pre>
+                <pre class="mb-0">【案件名】　{{$matter->matter_name}}　〔{{$matter->client}}〕<br/>【作業】　{{$matter->work_name}}<br/>【作業場所】　{{$matter->place}}（{{$matter->place_near_sta}}）<br/>【見込金額】　{{number_format($matter->wage)}}円</pre>
                 <button class="matter_btn btn btn-primary text-center my-2">詳　細</button>
             </td>
         </tr>
