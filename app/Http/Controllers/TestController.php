@@ -94,7 +94,7 @@ class TestController extends Controller
             $matter = Matter::where('id', $mattersId)->first();
             $nowdate = date("Y-m-d");
             $now = now();
-            $m_ids = Staff::where('id', $user->id)->first()->matters->where('day', '<', $nowdate)->sort(function ($first, $second){
+            $m_ids = Staff::where('id', $user->id)->first()->matters->sort(function ($first, $second){
                 if ($first['day'] == $second['day']) {
                 return $first['start_time'] < $second['start_time'] ? -1 : 1 ;
                 }
