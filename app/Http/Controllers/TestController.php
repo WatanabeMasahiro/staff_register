@@ -194,7 +194,17 @@ class TestController extends Controller
 
     public function work_pastPost(Request $request)
     {
-        return redirect('/');
+        if ($request->has('punchIn')){
+            $user = Auth::user();
+            $punchin_id = $request->punchIn;
+            $m_s = Staff::where('id', $user->id)->first()->matters()->updateExistingPivot($punchin_id, ['punchin' => true]);
+            return redirect('/work_past');
+        } elseif ($request->has('punchOut')){
+            $user = Auth::user();
+            $punchout_id = $request->punchOut;
+            $m_s = Staff::where('id', $user->id)->first()->matters()->updateExistingPivot($punchout_id, ['punchout' => true]);
+            return redirect('/work_past');
+        }
     }
 
 

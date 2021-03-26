@@ -12,7 +12,7 @@
     </div>
     <div class="card-body" style="background-color:ghostwhite;">
 
-        <form method="POST" action="#">
+        <form method="POST" action="/contact_form">
         @csrf
             <input type="hidden" name="staff_id" value="{{$user->id}}">
 

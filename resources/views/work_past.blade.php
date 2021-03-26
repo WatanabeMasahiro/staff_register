@@ -30,7 +30,7 @@
                 $timeset_ending = new DateTime();
                 $timeset_ending = $timeset_ending->setDate($matter->day->format('Y'),$matter->day->format('m'),$matter->day->format('d'))->setTime($matter->ending_time->format('H'),$matter->ending_time->format('i'),$matter->ending_time->format('s'))->format('Y-m-d H:i:s');
                 @endphp
-                <form id="form_punchin" action="/entry" method="POST">
+                <form id="form_punchin" action="/work_past" method="POST">
                 @csrf
                     <input type="hidden" id="input_punchin" name="punchIn" value="{{$matter->id}}">
                     @if($now < $timeset_b_three)
@@ -43,7 +43,7 @@
                     <button class="btn btn-secondary text-center text-danger mt-3" disabled>未対応</button>
                     @endif
                 </form>
-                <form id="form_punchout" action="/entry" method="POST">
+                <form id="form_punchout" action="/work_past" method="POST">
                 @csrf
                     <input type="hidden" id="input_punchout" name="punchOut" value="{{$matter->id}}">
                     @if($matter->pivot->punchin == true  &&  $matter->pivot->punchout == null  &&  $now >= $timeset)
